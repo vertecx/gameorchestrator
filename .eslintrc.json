@@ -1,0 +1,32 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "callback-return": "error",
+    "padded-blocks": [
+      "error",
+      "never"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "consistent-this": [
+      "error",
+      "self"
+    ],
+    "semi": "error",
+    "indent": [
+      "error",
+      "tab"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "gameorchestrator",
+  "version": "0.5.0",
+  "description": "Starts and stops resource intensive game servers based on player demand.",
+  "main": "app.js",
+  "dependencies": {
+    "minecraft-protocol": "^1.1.1",
+    "mysql": "^2.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.0",
+    "jasmine": "^2.5.2"
+  },
+  "scripts": {
+    "lint": "eslint app.js gameorchestrator; exit 0",
+    "test": "jasmine; exit 0"
+  },
+  "author": "Petter Jönsson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vertecx/gameorchestrator.git"
+  }
+}
