@@ -15,8 +15,8 @@ module.exports.minecraftVersion = (root, callback) => {
 
 		const versionMatch = linkString.match(/minecraft_server\.([0-9.]+)\.jar$/);
 
-		if (!versionMatch || versionMatch.length !== 2) return callback('Could not detect Minecraft version.');
-		if (!mc.supportedVersions.includes(versionMatch[1])) return callback(`Minecraft version ${versionMatch[1]} not supported by minecraft-protocol.`);
+		if (!versionMatch || versionMatch.length !== 2) return callback(new Error('Could not detect Minecraft version.'));
+		if (!mc.supportedVersions.includes(versionMatch[1])) return callback(new Error(`Minecraft version ${versionMatch[1]} not supported by minecraft-protocol.`));
 
 		callback(null, versionMatch[1]);
 	});
@@ -47,6 +47,7 @@ module.exports.minecraftProperties = (root, callback) => {
 					} else if (split[1] === 'false') {
 						properties[split[0]] = false;
 					} else {
+						// TODO: Unescape string
 						properties[split[0]] = split[1];
 					}
 				}
