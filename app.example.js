@@ -12,6 +12,22 @@ function period(text) {
 	return text.endsWith('.') ? text : text + '.';
 }
 
+function ifRunning(script, callback) {
+	const service = spawn('/usr/sbin/service', [script, 'status']);
+
+	service.on('exit', (code) => {
+		if (code === 0) {
+			return callback();
+		} else {
+			log.simpleLogger(log.info, `${script} is not running.`);
+		}
+	});
+
+	service.on('error', (err) => {
+		log.simpleLogger(log.error, `Status of the ${script} server failed: ${period(err.message)}`);
+	});
+}
+
 function service(script, action) {
 	const actionTitle = action.charAt(0).toUpperCase() + action.substr(1);
 	const service = spawn('/usr/local/bin/sudo', ['/usr/sbin/service', script, action]);
@@ -51,7 +67,9 @@ mcMon.once('configured', (err) => {
 });
 
 mcMon.on('stop', () => {
-	service('minecraft', 'stop');
+	ifRunning('minecraft', () => {
+		service('minecraft', 'stop');
+	});
 });
 
 trinityMon.once('configured', (err) => {
@@ -61,7 +79,9 @@ trinityMon.once('configured', (err) => {
 });
 
 trinityMon.on('stop', () => {
-	service('trinity3world', 'stop');
+	ifRunning('trinity3world', () => {
+		service('trinity3world', 'stop');
+	});
 });
 
 mcFake.on('log', log.simpleLogger);

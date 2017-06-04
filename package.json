@@ -1,6 +1,6 @@
 {
   "name": "gameorchestrator",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Starts and stops resource intensive game servers based on player demand.",
   "main": "app.js",
   "dependencies": {
@@ -12,7 +12,7 @@
     "jasmine": "^2.5.2"
   },
   "scripts": {
-    "lint": "eslint app.js gameorchestrator; exit 0",
+    "lint": "eslint app.js app.example.js gameorchestrator; exit 0",
     "test": "jasmine; exit 0"
   },
   "author": "Petter Jönsson",
